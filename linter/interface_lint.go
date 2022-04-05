@@ -1,4 +1,4 @@
-package linters
+package linter
 
 // This file defines the linter that typed context interfaces aren't
 // unnecessarily large, and that any interface-component that's used explicitly
@@ -23,7 +23,7 @@ import (
 
 	"golang.org/x/tools/go/analysis"
 
-	lintutil "github.com/aberkan/typed_context/linter/util"
+	lintutil "github.com/khan/typed-context/linter/util"
 )
 
 var TypedContextInterfaceAnalyzer = &analysis.Analyzer{
