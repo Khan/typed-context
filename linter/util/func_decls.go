@@ -25,7 +25,7 @@ func FilterFuncs(files []*ast.File, predicate func(*ast.FuncDecl) bool) []*ast.F
 
 // ReceiversByType returns all the receivers in the file, in a map by type.
 //
-// TODO(benkraft): May be more efficient to export this as an analyzer-result.
+// Note that it may be more efficient to export this as an analyzer-result.
 func ReceiversByType(files []*ast.File, typesInfo *types.Info) map[types.Type][]*ast.FuncDecl {
 	allReceivers := FilterFuncs(files,
 		func(decl *ast.FuncDecl) bool { return decl.Recv != nil })
@@ -42,7 +42,7 @@ func ReceiversByType(files []*ast.File, typesInfo *types.Info) map[types.Type][]
 // receiver) calls its "super" -- that is,
 // <receiver-var>.<superclass-name>.<receiver-name>().
 //
-// TODO(benkraft): At present, we don't validate what the superclass name is;
+// This doesn't validate what the superclass name is;
 // in the general case it's not clear what the correct rule would be as it's
 // not necessarily the name of any field of the receiver-type (it may be a
 // field of an intermediate embedded type).  We just validate that you call

@@ -568,9 +568,9 @@ func (tracker *_interfaceTracker) markUses(startNode ast.Node) {
 			tracker._markKeyParamsFunctionUsed(node)
 		case *ast.CompositeLit: // struct, map, or array
 			tracker._markCompositeLitValuesUsed(node)
-			// TODO(benkraft): There are a bunch of other ways to use a
+			// There are a bunch of other ways to use a
 			// value: for example you could assign it to a variable/field,
-			// use it in a struct literal, etc.
+			// use it in a struct literal, etc., so more may be needed here.
 		}
 		return true // otherwise, recurse
 	})
@@ -804,8 +804,7 @@ func (info *_objInfo) _interfaceWasRequested(typ types.Type) bool {
 	}
 
 	// If the interface is an inline interface, but has an explicit method,
-	// things get very confusing (because of the TODO in _leafInterfaces) and
-	// we just give up on this check.
+	// things get very confusing and we just give up on this check.
 	inlineIface, ok := typ.(*types.Interface)
 	if ok && inlineIface.NumExplicitMethods() > 0 {
 		return true
@@ -951,7 +950,7 @@ func _runInterface(pass *analysis.Pass) (interface{}, error) {
 					"add it explicitly (see ADR-429)",
 				obj.Name(), _formatTypeList(unrequested, pass.Pkg))
 		case len(unused) > 0:
-			// TODO(benkraft): If the identifier's type is an inline interface
+			// If the identifier's type is an inline interface
 			// it would be nice to report on the line where each embedded
 			// interface is included in it.  This is surprisingly tricky to
 			// implement, so we just report at the identifier itself.

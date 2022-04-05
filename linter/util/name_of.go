@@ -1,9 +1,6 @@
 // Package lintutil contains utilities for writing linters.
 //
 // For general documentation on linting, see dev/linters/README.md.
-//
-// TODO(benkraft): We may want to see if there's interest to contribute some of
-// these back to astutil or typeutil.
 package lintutil
 
 import (
@@ -35,8 +32,8 @@ func ObjectFor(node ast.Node, typesInfo *types.Info) types.Object {
 			return sel.Obj()
 		}
 		return typesInfo.Uses[node.Sel]
-	// TODO(benkraft): This is incomplete; we should check typesInfo.Types and
-	// perhaps typesInfo.Implicits.  Nothing we do needs those yet.
+	// Note: This is incomplete; it doesn't check typesInfo.Types and
+	// perhaps typesInfo.Implicits because we haven't needed those yet.
 	default:
 		return nil
 	}
@@ -49,9 +46,6 @@ func ObjectFor(node ast.Node, typesInfo *types.Info) types.Object {
 // This will return a name for functions (including builtin), types,
 // package-vars, consts, and not necessarily other nodes like struct fields.
 // If it can't determine the name, it returns "".
-//
-// TODO(benkraft): Write tests for the const case, if we ever make use of that
-// behavior.
 //
 // Note that methods have names like "(package/path.Interface).Method" or
 // "(*package/path.Struct).Method".
@@ -71,7 +65,7 @@ func NameOf(obj types.Object) string {
 		return qualifiedName(obj)
 	case *types.Var:
 		if obj.IsField() {
-			// TODO(benkraft): Handle struct fields.
+			// struct field handling would go here, if needed.
 			return ""
 		}
 		return qualifiedName(obj)
@@ -90,9 +84,6 @@ func NameOf(obj types.Object) string {
 // Note that this includes cases where this type wraps pkgPath.name, or where
 // they share an underlying type: this will only return true if the types are
 // the same.  Predeclared types will match the empty path.
-//
-// TODO(benkraft): Should we just check `typ.String() == "<pkgPath>.<name>"
-// which seems to be the same?
 func TypeIs(typ types.Type, pkgPath string, name string) bool {
 	named, ok := typ.(*types.Named)
 	if !ok {
