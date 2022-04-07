@@ -22,7 +22,7 @@ things.  They vary in how they access global & request specific elements.
 2. Parameters
 3. Context, with unsafe casting
 4. Context but safely
-5. statically typed context
+5. Statically typed context
 
 The blog post explains the pros and cons, and explains why we use statically
 typed contexts at Khan Academy.
