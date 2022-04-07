@@ -1,6 +1,5 @@
-This is the sample code for a post on the Khan Academy Engineering Blog
-describing how we use statically typed context.
-TODO: Insert link to blog post.
+This is the sample code for a [post on the Khan Academy Engineering Blog
+describing how we use statically typed context](https://blog.khanacademy.org/statically-typed-context-in-go/).
 
 -----
 
