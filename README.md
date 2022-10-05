@@ -18,11 +18,21 @@ There are 5 examples, each of which is described in the blog post.  In each
 case the file `thing.go` contains a function `DoTheThing` which does the same
 things.  They vary in how they access global & request specific elements.
 
+There are 2 more examples added since the blog post.  Some feedback on the
+original ideas was worth coding into an example.  The Server Object is just a
+wrapper around a bunch of resources, which makes function signatures and call
+sites easy, but does very little to document dependencies.  The Server
+Interface is essentially the Statically Typed Context, but without the context.
+Call sites end up with 2 parameters instead of 1, but some context purists
+might prefer it.
+
 1. Globals
 2. Parameters
 3. Context, with unsafe casting
 4. Context but safely
 5. Statically typed context
+6. Server object
+7. Server interface
 
 The blog post explains the pros and cons, and explains why we use statically
 typed contexts at Khan Academy.
