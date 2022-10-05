@@ -23,7 +23,7 @@ func DoTheThing(
 			return err
 		}
 
-		err = server.httpClient.Post("www.dothething.example", user.GetName(), token)
+		err = server.httpClient.Post(server, "www.dothething.example", user.GetName(), token)
 		return err
 	}
 	return nil

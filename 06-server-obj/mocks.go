@@ -73,7 +73,7 @@ func GetMockDatabase() *Database {
 
 type HttpClient struct{}
 
-func (*HttpClient) Post(url string, param string, token Token) error {
+func (*HttpClient) Post(server *Server, url string, param string, token Token) error {
 	fmt.Printf("HTTP Posting %v?%v\n", url, param)
 	return nil
 }
